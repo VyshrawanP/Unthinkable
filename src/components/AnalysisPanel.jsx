@@ -127,10 +127,10 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
   const engagementScore = analysis.engagementScore?.score || 0;
   const scoreColor =
     engagementScore >= 7
-      ? '#10b981'
+      ? '#0fad5c'
       : engagementScore >= 4
-        ? '#f59e0b'
-        : '#f43f5e';
+        ? '#f5a623'
+        : '#eb2026';
 
   return (
     <div className="analysis-panel glass-card animate-fade-in-up">
@@ -150,7 +150,7 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
           <div className="analysis-card__header">
             <div
               className="analysis-card__icon"
-              style={{ background: 'rgba(59, 130, 246, 0.15)', color: '#3b82f6' }}
+              style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary)' }}
             >
               <Target size={18} />
             </div>
@@ -161,7 +161,7 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
             <div style={{ marginTop: '12px' }}>
               <span
                 className="extracted-text-header__badge"
-                style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#60a5fa' }}
+                style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary)' }}
               >
                 Best for: {analysis.targetPlatform}
               </span>
@@ -177,10 +177,10 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
               style={{
                 background:
                   engagementScore >= 7
-                    ? 'rgba(16, 185, 129, 0.15)'
+                    ? 'var(--color-emerald-light)'
                     : engagementScore >= 4
-                      ? 'rgba(245, 158, 11, 0.15)'
-                      : 'rgba(244, 63, 94, 0.15)',
+                      ? 'var(--color-amber-light)'
+                      : 'var(--color-rose-light)',
                 color: scoreColor,
               }}
             >
@@ -205,16 +205,16 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
               style={{
                 background:
                   sentimentLabel === 'positive'
-                    ? 'rgba(16, 185, 129, 0.15)'
+                    ? 'var(--color-emerald-light)'
                     : sentimentLabel === 'negative'
-                      ? 'rgba(244, 63, 94, 0.15)'
-                      : 'rgba(245, 158, 11, 0.15)',
+                      ? 'var(--color-rose-light)'
+                      : 'var(--color-amber-light)',
                 color:
                   sentimentLabel === 'positive'
-                    ? '#10b981'
+                    ? 'var(--color-emerald)'
                     : sentimentLabel === 'negative'
-                      ? '#f43f5e'
-                      : '#f59e0b',
+                      ? 'var(--color-rose)'
+                      : '#c88300',
               }}
             >
               <SentimentIcon label={sentimentLabel} />
@@ -241,7 +241,7 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
             <div className="analysis-card__header">
               <div
                 className="analysis-card__icon"
-                style={{ background: 'rgba(6, 182, 212, 0.15)', color: '#06b6d4' }}
+                style={{ background: '#e0f7fa', color: 'var(--color-cyan)' }}
               >
                 <Hash size={18} />
               </div>
@@ -253,9 +253,9 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
                   key={i}
                   className="format-badge"
                   style={{
-                    background: 'rgba(6, 182, 212, 0.1)',
-                    color: '#22d3ee',
-                    borderColor: 'rgba(6, 182, 212, 0.2)',
+                    background: '#e0f7fa',
+                    color: 'var(--color-cyan)',
+                    borderColor: 'rgba(0, 188, 212, 0.2)',
                   }}
                 >
                   #{tag}
@@ -271,7 +271,7 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
             <div className="analysis-card__header">
               <div
                 className="analysis-card__icon"
-                style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#8b5cf6' }}
+                style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary)' }}
               >
                 <Lightbulb size={18} />
               </div>
@@ -301,7 +301,7 @@ export default function AnalysisPanel({ analysis, isAnalyzing, analysisError }) 
             <div className="analysis-card__header">
               <div
                 className="analysis-card__icon"
-                style={{ background: 'rgba(139, 92, 246, 0.15)', color: '#8b5cf6' }}
+                style={{ background: 'var(--color-primary-light)', color: 'var(--color-primary)' }}
               >
                 <PenLine size={18} />
               </div>
