@@ -1,95 +1,204 @@
-# Social Media Content Analyzer
+<div align="center">
 
-An AI-powered web application that extracts text from uploaded PDFs and images (via OCR), then analyzes the content for social media engagement potential — providing sentiment analysis, engagement scoring, actionable improvement suggestions, and an optimized rewrite.
+# ✨ Social Media Content Analyzer
 
-![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
-![Vite](https://img.shields.io/badge/Vite-6-646CFF?logo=vite)
-![Tesseract.js](https://img.shields.io/badge/Tesseract.js-OCR-4285F4)
-![Gemini](https://img.shields.io/badge/Gemini_AI-Free_Tier-8E75B2)
+### AI-Powered Document Intelligence for Social Media Engagement
 
-## ✨ Features
+<br/>
 
-- **📄 PDF Text Extraction** — Parse multi-page PDFs with formatting preservation using PDF.js
-- **🖼️ OCR for Images** — Extract text from scanned documents and screenshots using Tesseract.js (fully client-side)
-- **🤖 AI Content Analysis** — Google Gemini-powered analysis including:
-  - Content summary & best platform recommendation
-  - Sentiment analysis (positive/negative/neutral) with confidence score
-  - Engagement score (1–10) with visual ring gauge
-  - 5 actionable improvement suggestions across categories (tone, hashtags, CTA, formatting, timing)
-  - Optimized rewritten post version
-  - Hashtag recommendations
-- **🎯 Drag & Drop Upload** — Intuitive file upload with drag-and-drop and file picker
-- **⚡ Real-time Progress** — Live progress tracking for PDF parsing and OCR processing
-- **🔒 Privacy-First** — All document processing happens client-side; only AI analysis hits an external API
-- **🌙 Premium Dark UI** — Glassmorphism design with micro-animations
+[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Visit_App-8b5cf6?style=for-the-badge&logoColor=white)](https://unthinkable-vyshrawanps-projects.vercel.app)
+[![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite_6-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev)
+[![Tesseract](https://img.shields.io/badge/Tesseract.js-OCR_Engine-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://tesseract.projectnaptha.com)
+[![Gemini](https://img.shields.io/badge/Gemini_AI-Powered-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev)
+[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 
-## 🛠️ Tech Stack
+<br/>
 
-| Layer | Technology |
-|:---|:---|
-| Framework | React 19 + Vite 6 |
-| PDF Parsing | pdfjs-dist (PDF.js) |
-| OCR | Tesseract.js (WebAssembly, client-side) |
-| AI Analysis | Google Gemini 2.0 Flash (REST API) |
-| Icons | Lucide React |
-| Styling | Vanilla CSS (custom properties, glassmorphism) |
+> **Upload PDFs & images → Extract text with OCR → Get AI-powered engagement insights**
+>
+> All document processing runs **client-side** — your files never leave your device.
 
-## 🚀 Getting Started
+<br/>
 
-### Prerequisites
-- Node.js 18+ and npm
-- A free [Google Gemini API key](https://aistudio.google.com/apikey)
+</div>
 
-### Installation
+---
 
-```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/social-media-content-analyzer.git
-cd social-media-content-analyzer
+## 🎯 Problem Statement
 
-# Install dependencies
-npm install
+Social media managers and content creators spend hours manually analyzing posts to understand what drives engagement. This tool automates that process: upload any document (PDF reports, image screenshots, scanned content), extract the text intelligently, and receive **actionable, AI-generated recommendations** to boost social media performance.
 
-# Start the development server
-npm run dev
-```
-
-### Configuration
-
-1. Open the app in your browser (default: `http://localhost:5173`)
-2. Click **"Add API Key"** in the status bar
-3. Paste your Gemini API key and click **Save Key**
-4. Your key is stored in localStorage (never sent anywhere except Google's API)
-
-## 📖 Usage
-
-1. **Upload** a PDF or image file via drag-and-drop or the file picker
-2. **Wait** for text extraction (progress is shown in real time)
-3. **Review** the extracted text — copy it if needed
-4. **Analyze** — the AI automatically analyzes the content (or click "Analyze for Engagement")
-5. **Review insights** — sentiment, engagement score, suggestions, and an optimized post version
+---
 
 ## 🏗️ Architecture
 
 ```
-src/
-├── components/
-│   ├── FileUploader.jsx    # Drag-and-drop file upload with validation
-│   ├── TextExtractor.jsx   # Extracted text display with progress & copy
-│   ├── AnalysisPanel.jsx   # AI analysis dashboard (scores, suggestions)
-│   └── ApiKeyModal.jsx     # API key configuration modal
-├── services/
-│   ├── pdfService.js       # PDF.js text extraction with formatting
-│   ├── ocrService.js       # Tesseract.js OCR with progress tracking
-│   └── aiService.js        # Gemini API integration & prompt engineering
-├── App.jsx                 # Main orchestration & state management
-├── main.jsx                # Entry point
-└── index.css               # Design system (tokens, glassmorphism, animations)
+┌──────────────────────────────────────────────────────────────────┐
+│                        BROWSER (Client-Side)                     │
+│                                                                  │
+│  ┌─────────────┐    ┌──────────────────────────────────────┐     │
+│  │  File Upload │    │        Processing Engine             │     │
+│  │             │    │                                      │     │
+│  │ • Drag&Drop ├───►│  PDF? ──► pdfjs-dist (Text Extract) │     │
+│  │ • Picker    │    │                                      │     │
+│  │ • Validate  │    │  IMG? ──► Tesseract.js (OCR / WASM)  │     │
+│  └─────────────┘    └──────────────┬───────────────────────┘     │
+│                                    │                             │
+│                                    ▼                             │
+│                     ┌──────────────────────────┐                 │
+│                     │    Extracted Text Panel   │                 │
+│                     │  • Word/char count        │                 │
+│                     │  • Copy to clipboard      │                 │
+│                     │  • Formatted display      │                 │
+│                     └────────────┬─────────────┘                 │
+└──────────────────────────────────┼───────────────────────────────┘
+                                   │
+                                   ▼  (Only this step calls an API)
+                     ┌──────────────────────────┐
+                     │   Google Gemini 2.0 Flash │
+                     │   REST API (Free Tier)    │
+                     └────────────┬─────────────┘
+                                  │
+                                  ▼
+              ┌───────────────────────────────────────┐
+              │         Analysis Dashboard            │
+              │                                       │
+              │  📊 Engagement Score (1-10 ring gauge) │
+              │  💬 Sentiment Analysis + Confidence    │
+              │  📝 Content Summary                    │
+              │  💡 5 Improvement Suggestions          │
+              │  ✍️  Optimized Post Rewrite             │
+              │  #️⃣  Hashtag Recommendations            │
+              │  🎯 Best Platform Recommendation       │
+              └───────────────────────────────────────┘
 ```
 
-## 📝 Approach (200 words)
+---
 
-I built a fully client-side document processing pipeline paired with cloud AI analysis. The architecture separates concerns into three service modules: PDF parsing (pdfjs-dist), OCR (Tesseract.js via WebAssembly), and AI analysis (Gemini REST API).
+## ✨ Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 📄 Smart Document Upload
+- **Drag & Drop** with animated visual feedback
+- **File Picker** fallback for accessibility
+- Supports **PDF, PNG, JPG, WEBP, GIF, BMP, TIFF**
+- File validation (type + 20MB size limit)
+- Inline file preview with type icon
+
+</td>
+<td width="50%">
+
+### 🔍 Intelligent Text Extraction
+- **PDF.js** — Parses multi-page PDFs with formatting preservation
+- **Tesseract.js** — OCR via WebAssembly (runs entirely in-browser)
+- **Real-time progress bars** with contextual status messages
+- Copy-to-clipboard with word & character counts
+- Handles edge cases: empty PDFs, password-protected files
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🤖 AI-Powered Analysis
+- **Engagement Score** — Visual ring gauge (1-10)
+- **Sentiment Analysis** — Positive/Negative/Neutral with confidence %
+- **5 Categorized Suggestions** — Tone, Hashtags, CTA, Formatting, Timing
+- **Optimized Rewrite** — AI-generated improved version
+- **Platform Recommendation** — Best social network for the content
+
+</td>
+<td width="50%">
+
+### 🎨 Premium User Experience
+- **Dark glassmorphism** theme with violet/cyan gradient accents
+- **30+ micro-animations** — fade, slide, scale, float, glow, shimmer
+- **Skeleton loading** states during AI processing
+- **Responsive design** — mobile, tablet, desktop
+- **Accessible** — keyboard navigation, ARIA labels, semantic HTML
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology | Why This Choice |
+|:---|:---|:---|
+| **Framework** | React 19 + Vite 6 | Blazing-fast HMR, optimized production builds |
+| **PDF Parsing** | pdfjs-dist | Industry-standard, Mozilla-backed, handles complex PDFs |
+| **OCR Engine** | Tesseract.js v7 | Client-side WebAssembly — zero backend, full privacy |
+| **AI Analysis** | Google Gemini 2.0 Flash | Generous free tier, fast inference, structured JSON output |
+| **Icons** | Lucide React | Tree-shakable, consistent, 1000+ icons |
+| **Styling** | Vanilla CSS + Custom Properties | Zero runtime overhead, full design control, small bundle |
+
+---
+
+## 🚀 Quick Start
+
+### Prerequisites
+- **Node.js 18+** and npm
+- A free **[Google Gemini API Key](https://aistudio.google.com/apikey)** (takes 30 seconds)
+
+### Run Locally
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/VyshrawanP/Unthinkable.git
+cd Unthinkable
+
+# 2. Install dependencies
+npm install
+
+# 3. Start the development server
+npm run dev
+```
+
+### Configure API Key
+
+1. Open `http://localhost:5173` in your browser
+2. Click **"Add API Key"** in the top status bar
+3. Paste your Gemini API key → click **Save Key**
+4. Done! Your key is stored locally and never sent to any server except Google's API
+
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── FileUploader.jsx      # Drag-and-drop + file picker with validation
+│   ├── TextExtractor.jsx     # Extracted text display + progress tracking
+│   ├── AnalysisPanel.jsx     # AI results dashboard (scores, suggestions)
+│   └── ApiKeyModal.jsx       # API key management with test validation
+│
+├── services/
+│   ├── pdfService.js         # PDF.js extraction with formatting + progress
+│   ├── ocrService.js         # Tesseract.js OCR with real-time progress
+│   └── aiService.js          # Gemini API integration + prompt engineering
+│
+├── App.jsx                   # Main orchestration & state management
+├── main.jsx                  # React entry point
+└── index.css                 # Complete design system (700+ lines)
+```
+
+---
+
+## 🧠 Technical Approach
+
+<details>
+<summary><strong>📖 Click to expand — 200-word approach summary (as required)</strong></summary>
+
+<br/>
+
+I built a fully **client-side document processing pipeline** paired with cloud AI analysis. The architecture separates concerns into three service modules: PDF parsing (pdfjs-dist), OCR (Tesseract.js via WebAssembly), and AI analysis (Gemini REST API).
 
 **Key design decisions:**
 
@@ -103,13 +212,54 @@ I built a fully client-side document processing pipeline paired with cloud AI an
 
 The React frontend uses vanilla CSS with custom properties for a premium glassmorphism dark theme, keeping the bundle lean while delivering a polished experience.
 
+</details>
+
+---
+
+## 🔒 Privacy & Security
+
+| Aspect | Implementation |
+|:---|:---|
+| **Document Processing** | 100% client-side — files never uploaded to any server |
+| **API Key Storage** | localStorage only — never transmitted except to Google's API |
+| **No Backend** | Zero server infrastructure — no database, no cookies, no tracking |
+| **Open Source** | Full source code available for audit |
+
+---
+
 ## 📦 Build for Production
 
 ```bash
+# Build optimized production bundle
 npm run build
-npm run preview  # Preview the production build locally
+
+# Preview the production build locally
+npm run preview
 ```
 
-## 📄 License
+Output: ~690KB JS (204KB gzipped) + 20KB CSS (4KB gzipped)
 
-MIT
+---
+
+## 🗺️ Future Enhancements
+
+- [ ] Multi-file batch processing
+- [ ] Export analysis results as PDF report
+- [ ] Side-by-side comparison of original vs. optimized content
+- [ ] Support for additional languages (Tesseract supports 100+)
+- [ ] Social media post scheduling integration
+- [ ] Historical analysis dashboard with trends
+
+---
+
+<div align="center">
+
+### Built with ❤️ by [Vyshrawan P](https://github.com/VyshrawanP)
+
+**React** · **PDF.js** · **Tesseract.js** · **Google Gemini AI**
+
+<br/>
+
+⭐ **Star this repo** if you found it useful!
+
+</div>
