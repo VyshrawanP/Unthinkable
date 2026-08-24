@@ -192,51 +192,63 @@ export default function App() {
 
   return (
     <>
-      {/* Header */}
-      <header className="app-header">
-        <div className="app-header__logo">
-          <Sparkles size={32} />
-        </div>
-        <h1 className="app-header__title">Social Media Content Analyzer</h1>
-        <p className="app-header__subtitle">
-          Upload documents, extract text with AI-powered OCR, and get actionable
-          suggestions to boost your social media engagement.
-        </p>
-      </header>
-
-      <main className="app-container">
-        {/* API Key Status Bar */}
-        <div className="api-key-bar">
-          <div className="api-key-bar__status">
-            <span
-              className={`api-key-bar__dot ${hasApiKey ? 'api-key-bar__dot--active' : 'api-key-bar__dot--inactive'}`}
-            />
-            {hasApiKey
-              ? 'Gemini API connected'
-              : 'No API key configured'}
+      {/* MakeMyTrip-style Top Header */}
+      <header className="mmt-header">
+        <div className="mmt-header__inner">
+          <div className="mmt-header__logo">
+            <Sparkles size={24} color="#eb2026" />
+            <span>SocialAnalyzer</span>
           </div>
-          <div style={{ display: 'flex', gap: '8px' }}>
+          
+          <nav className="mmt-header__nav">
+            <a href="#" className="active">
+              <span className="nav-icon">📊</span> Analyze
+            </a>
+            <a href="#">
+              <span className="nav-icon">📅</span> History
+            </a>
+            <a href="#">
+              <span className="nav-icon">📑</span> Templates
+            </a>
+          </nav>
+
+          <div className="mmt-header__actions">
+            <div className={`api-status ${hasApiKey ? 'active' : ''}`}>
+              <span className="api-dot"></span>
+              {hasApiKey ? 'API Ready' : 'No API Key'}
+            </div>
             <button
-              className="btn btn--ghost"
+              className="btn-login"
               onClick={() => setShowApiKeyModal(true)}
-              id="configure-api-key-btn"
             >
-              <Key size={14} />
-              {hasApiKey ? 'Change Key' : 'Add API Key'}
+              <Key size={14} style={{ marginRight: '6px' }} />
+              {hasApiKey ? 'Manage Key' : 'Setup API'}
             </button>
             {hasApiKey && (
               <button
-                className="btn btn--ghost"
+                className="btn-logout"
                 onClick={handleApiKeyRemove}
-                style={{ color: 'var(--color-rose)' }}
-                id="remove-api-key-btn"
+                title="Remove Key"
               >
-                Remove
+                Logout
               </button>
             )}
           </div>
         </div>
+      </header>
 
+      {/* Hero Section */}
+      <div className="mmt-hero">
+        <div className="mmt-hero__content">
+          <h1>Boost Your Social Engagement</h1>
+          <p>
+            Upload documents, extract text with AI-powered OCR, and get actionable
+            suggestions for your social media posts in seconds.
+          </p>
+        </div>
+      </div>
+
+      <main className="app-container">
         {/* Workflow */}
         <div className="workflow">
           {/* Step 1: Upload */}
@@ -260,7 +272,7 @@ export default function App() {
                 ocrConfidence={ocrConfidence}
               />
 
-              {/* Analyze button (shown when text is extracted but no analysis yet) */}
+              {/* Analyze button */}
               {showAnalyzeBtn && (
                 <div style={{ textAlign: 'center', marginTop: '24px' }}>
                   <button
@@ -289,9 +301,46 @@ export default function App() {
         </div>
       </main>
 
-      {/* Footer */}
-      <footer className="app-footer">
-        Social Media Content Analyzer · Built with React, PDF.js, Tesseract.js & Gemini AI
+      {/* MakeMyTrip-style Multi-column Footer */}
+      <footer className="mmt-footer">
+        <div className="mmt-footer__container">
+          <div className="mmt-footer__top">
+            <div className="mmt-footer__col">
+              <h4>Why SocialAnalyzer?</h4>
+              <p>We use advanced AI to process your documents and provide the best engagement strategies for platforms like Twitter, LinkedIn, and Instagram.</p>
+            </div>
+            <div className="mmt-footer__col">
+              <h4>About Us</h4>
+              <ul>
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#">Blog</a></li>
+              </ul>
+            </div>
+            <div className="mmt-footer__col">
+              <h4>Support</h4>
+              <ul>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+              </ul>
+            </div>
+            <div className="mmt-footer__col">
+              <h4>Stay Connected</h4>
+              <ul>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Facebook</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="mmt-footer__bottom">
+            <p>© 2026 Social Media Content Analyzer. Built for engagement.</p>
+            <div className="mmt-footer__payment">
+              <span>Secure AI Processing</span>
+            </div>
+          </div>
+        </div>
       </footer>
 
       {/* API Key Modal */}
